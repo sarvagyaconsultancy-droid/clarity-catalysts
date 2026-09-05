@@ -275,8 +275,8 @@ export const getAvailableSlots = createServerFn({ method: "GET" }).handler(async
     const times: string[] = [];
     for (const rule of rules.data ?? []) {
       if (rule.weekday !== weekday) continue;
-      const [sh, sm] = String(rule.start_time).split(":").map(Number);
-      const [eh, em] = String(rule.end_time).split(":").map(Number);
+      const [sh = 0, sm = 0] = String(rule.start_time).split(":").map(Number);
+      const [eh = 0, em = 0] = String(rule.end_time).split(":").map(Number);
       const step = rule.slot_minutes || 30;
       for (let m = sh * 60 + sm; m + step <= eh * 60 + em; m += step) {
         const t = `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
