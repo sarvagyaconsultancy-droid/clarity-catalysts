@@ -269,8 +269,6 @@ export const getAvailableSlots = createServerFn({ method: "GET" }).handler(async
   ]);
 
   const blocked = new Set((blocks.data ?? []).map((b) => b.block_date));
-  const takenRes = await fetch("data:,").catch(() => null);
-  void takenRes;
   const taken = new Set(
     (booked.data ?? []).map((b) => `${b.slot_date}T${String(b.slot_time).slice(0, 5)}`),
   );
