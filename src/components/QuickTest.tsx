@@ -27,7 +27,7 @@ export function QuickTest() {
   );
   const band = bandForScore(score, MAX);
   const pct = Math.round((score / MAX) * 100);
-  const current = QUICK_TEST_QUESTIONS[step];
+  const current = QUICK_TEST_QUESTIONS[step] ?? QUICK_TEST_QUESTIONS[0]!;
   const progress = done ? 100 : Math.round((step / QUICK_TEST_QUESTIONS.length) * 100);
 
   function choose(value: number) {
@@ -64,7 +64,7 @@ export function QuickTest() {
   }
 
   if (done) {
-    const copy = BAND_COPY[band];
+    const copy = BAND_COPY[band]!;
     return (
       <div className="rounded-3xl border border-border bg-card p-7 shadow-lift sm:p-10">
         <p className="text-eyebrow">Your Business Finance Snapshot</p>
