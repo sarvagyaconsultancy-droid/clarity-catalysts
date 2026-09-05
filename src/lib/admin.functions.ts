@@ -183,3 +183,17 @@ export const getMyAdminStatus = createServerFn({ method: "GET" })
       .maybeSingle();
     return { isAdmin: Boolean(data) };
   });
+
+/** One-time bootstrap: the first signed-in user becomes admin when none exists. */
+export const claimFirstAdmin = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { count } = await supabaseAdmin
+      .from("user_roles")
+      .select("id", { count: "exact", head: true })
+      .eq("role", "admin");
+    if ((count ?? 0) > 0) return { claimed: false as const };
+    await supabaseAdmin.from("user_roles").insert({ user_id: context.userId, role: "admin" });
+    return { claimed: true as const };
+  });
