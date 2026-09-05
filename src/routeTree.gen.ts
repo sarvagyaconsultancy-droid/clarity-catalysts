@@ -11,11 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FinancialHealthCheckRouteImport } from './routes/financial-health-check'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuickTestRouteImport } from './routes/quick-test'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WhySarvagyaRouteImport } from './routes/why-sarvagya'
@@ -28,6 +31,16 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -55,6 +68,11 @@ const QuickTestRoute = QuickTestRouteImport.update({
   path: '/quick-test',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -74,11 +92,14 @@ const WhySarvagyaRoute = WhySarvagyaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
   '/privacy': typeof PrivacyRoute
   '/quick-test': typeof QuickTestRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/why-sarvagya': typeof WhySarvagyaRoute
@@ -86,11 +107,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
   '/privacy': typeof PrivacyRoute
   '/quick-test': typeof QuickTestRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/why-sarvagya': typeof WhySarvagyaRoute
@@ -99,11 +123,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
   '/privacy': typeof PrivacyRoute
   '/quick-test': typeof QuickTestRoute
+  '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
   '/why-sarvagya': typeof WhySarvagyaRoute
@@ -113,11 +140,14 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
+    | '/auth'
     | '/contact'
     | '/faq'
     | '/financial-health-check'
     | '/privacy'
     | '/quick-test'
+    | '/reviews'
     | '/services'
     | '/terms'
     | '/why-sarvagya'
@@ -125,11 +155,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/admin'
+    | '/auth'
     | '/contact'
     | '/faq'
     | '/financial-health-check'
     | '/privacy'
     | '/quick-test'
+    | '/reviews'
     | '/services'
     | '/terms'
     | '/why-sarvagya'
@@ -137,11 +170,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
+    | '/auth'
     | '/contact'
     | '/faq'
     | '/financial-health-check'
     | '/privacy'
     | '/quick-test'
+    | '/reviews'
     | '/services'
     | '/terms'
     | '/why-sarvagya'
@@ -150,11 +186,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRoute
+  AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   FinancialHealthCheckRoute: typeof FinancialHealthCheckRoute
   PrivacyRoute: typeof PrivacyRoute
   QuickTestRoute: typeof QuickTestRoute
+  ReviewsRoute: typeof ReviewsRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
   WhySarvagyaRoute: typeof WhySarvagyaRoute
@@ -174,6 +213,20 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -211,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuickTestRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -238,11 +298,14 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRoute,
+  AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   FinancialHealthCheckRoute: FinancialHealthCheckRoute,
   PrivacyRoute: PrivacyRoute,
   QuickTestRoute: QuickTestRoute,
+  ReviewsRoute: ReviewsRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
   WhySarvagyaRoute: WhySarvagyaRoute,
