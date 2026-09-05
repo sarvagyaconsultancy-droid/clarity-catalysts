@@ -256,7 +256,7 @@ function Home() {
           {HOME_CATEGORIES.map((c, i) => (
             <Reveal key={c.title} delay={i * 80}>
               <Link
-                to={c.href}
+                to="/services"
                 className="group flex flex-col gap-2 py-7 transition-colors hover:bg-secondary/40 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-4"
               >
                 <span className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
