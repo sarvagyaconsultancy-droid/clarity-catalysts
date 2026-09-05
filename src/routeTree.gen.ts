@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as FinancialHealthCheckRouteImport } from './routes/financial-health-check'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as QuickTestRouteImport } from './routes/quick-test'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WhySarvagyaRouteImport } from './routes/why-sarvagya'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinancialHealthCheckRoute = FinancialHealthCheckRouteImport.update({
+  id: '/financial-health-check',
+  path: '/financial-health-check',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuickTestRoute = QuickTestRouteImport.update({
+  id: '/quick-test',
+  path: '/quick-test',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhySarvagyaRoute = WhySarvagyaRouteImport.update({
+  id: '/why-sarvagya',
+  path: '/why-sarvagya',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/financial-health-check': typeof FinancialHealthCheckRoute
+  '/privacy': typeof PrivacyRoute
+  '/quick-test': typeof QuickTestRoute
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/why-sarvagya': typeof WhySarvagyaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/financial-health-check': typeof FinancialHealthCheckRoute
+  '/privacy': typeof PrivacyRoute
+  '/quick-test': typeof QuickTestRoute
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/why-sarvagya': typeof WhySarvagyaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/financial-health-check': typeof FinancialHealthCheckRoute
+  '/privacy': typeof PrivacyRoute
+  '/quick-test': typeof QuickTestRoute
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/why-sarvagya': typeof WhySarvagyaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faq'
+    | '/financial-health-check'
+    | '/privacy'
+    | '/quick-test'
+    | '/services'
+    | '/terms'
+    | '/why-sarvagya'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faq'
+    | '/financial-health-check'
+    | '/privacy'
+    | '/quick-test'
+    | '/services'
+    | '/terms'
+    | '/why-sarvagya'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faq'
+    | '/financial-health-check'
+    | '/privacy'
+    | '/quick-test'
+    | '/services'
+    | '/terms'
+    | '/why-sarvagya'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
+  FinancialHealthCheckRoute: typeof FinancialHealthCheckRoute
+  PrivacyRoute: typeof PrivacyRoute
+  QuickTestRoute: typeof QuickTestRoute
+  ServicesRoute: typeof ServicesRoute
+  TermsRoute: typeof TermsRoute
+  WhySarvagyaRoute: typeof WhySarvagyaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financial-health-check': {
+      id: '/financial-health-check'
+      path: '/financial-health-check'
+      fullPath: '/financial-health-check'
+      preLoaderRoute: typeof FinancialHealthCheckRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quick-test': {
+      id: '/quick-test'
+      path: '/quick-test'
+      fullPath: '/quick-test'
+      preLoaderRoute: typeof QuickTestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/why-sarvagya': {
+      id: '/why-sarvagya'
+      path: '/why-sarvagya'
+      fullPath: '/why-sarvagya'
+      preLoaderRoute: typeof WhySarvagyaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
+  FinancialHealthCheckRoute: FinancialHealthCheckRoute,
+  PrivacyRoute: PrivacyRoute,
+  QuickTestRoute: QuickTestRoute,
+  ServicesRoute: ServicesRoute,
+  TermsRoute: TermsRoute,
+  WhySarvagyaRoute: WhySarvagyaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

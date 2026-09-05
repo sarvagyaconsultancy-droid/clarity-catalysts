@@ -228,12 +228,8 @@ export const trackEvent = createServerFn({ method: "POST" })
   });
 
 export const getApprovedReviews = createServerFn({ method: "GET" }).handler(async () => {
-  const { createClient } = await import("@supabase/supabase-js");
-  const client = createClient(
-    process.env["SUPABASE_URL"]!,
-    process.env["SUPABASE_PUBLISHABLE_KEY"]!,
-    { auth: { persistSession: false, autoRefreshToken: false } },
-  );
+  const { createPublicClient } = await import("./supabase-public.server");
+  const client = createPublicClient();
   const { data, error } = await client
     .from("reviews")
     .select("id,name,business_name,rating,feedback,recommend,created_at")
@@ -246,12 +242,9 @@ export const getApprovedReviews = createServerFn({ method: "GET" }).handler(asyn
 
 /** Available consultation slots for the next 21 days. */
 export const getAvailableSlots = createServerFn({ method: "GET" }).handler(async () => {
-  const { createClient } = await import("@supabase/supabase-js");
-  const client = createClient(
-    process.env["SUPABASE_URL"]!,
-    process.env["SUPABASE_PUBLISHABLE_KEY"]!,
-    { auth: { persistSession: false, autoRefreshToken: false } },
-  );
+  const { createPublicClient } = await import("./supabase-public.server");
+  const client = createPublicClient();
+
 
   const today = new Date();
   const start = new Date(today.getTime() + 24 * 60 * 60 * 1000);
