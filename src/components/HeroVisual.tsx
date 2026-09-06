@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Check, IndianRupee, TrendingUp, WalletCards } from "lucide-react";
 
 /**
  * Abstract financial visual: scattered figures settle into a structured ledger
@@ -35,90 +36,84 @@ export function HeroVisual() {
     };
   }, []);
 
-  const chips = [
-    { label: "Invoice #2841", x: -34, y: -26, r: -13 },
-    { label: "₹ 4,20,000", x: 30, y: -34, r: 10 },
-    { label: "GSTR-3B", x: -40, y: 20, r: 8 },
-    { label: "Receivables", x: 34, y: 24, r: -9 },
-    { label: "Bank recon", x: -8, y: 36, r: 6 },
-    { label: "Expenses", x: 12, y: -6, r: -6 },
-  ];
-
-  const bars = [34, 46, 41, 58, 66, 78, 92];
+  const bars = [42, 54, 49, 66, 61, 78, 88];
 
   return (
     <div ref={ref} className="relative isolate mx-auto w-full max-w-xl" aria-hidden="true">
-      <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-accent/40 blur-3xl" />
-
-      <div className="relative aspect-square w-full">
-        {chips.map((chip, i) => {
-          const settled = progress;
-          const x = chip.x * (1 - settled);
-          const y = chip.y * (1 - settled) + i * 2 * settled;
-          const rotate = chip.r * (1 - settled);
-          const opacity = 1 - settled * 0.55;
-          return (
-            <div
-              key={chip.label}
-              className="absolute left-1/2 top-1/2 rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-soft"
-              style={{
-                transform: `translate(-50%,-50%) translate(${x}%, ${y}%) rotate(${rotate}deg)`,
-                opacity,
-                transition: "transform 0.9s var(--ease-out-soft), opacity 0.9s var(--ease-out-soft)",
-              }}
-            >
-              {chip.label}
-            </div>
-          );
-        })}
-
-        <div
-          className="absolute inset-x-4 bottom-6 rounded-3xl border border-border bg-card/95 p-6 shadow-lift backdrop-blur"
-          style={{
-            opacity: 0.35 + progress * 0.65,
-            transform: `translateY(${(1 - progress) * 14}px)`,
-            transition: "all 0.9s var(--ease-out-soft)",
-          }}
-        >
-          <div className="flex items-baseline justify-between">
-            <span className="text-eyebrow">Structured view</span>
-            <span className="text-xs text-muted-foreground">Last 7 periods</span>
+      <div className="absolute inset-8 -z-10 bg-accent/60 blur-3xl" />
+      <div
+        className="relative min-h-[29rem] overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-lift sm:p-7"
+        style={{
+          opacity: 0.82 + progress * 0.18,
+          transform: `translateY(${(1 - progress) * 8}px)`,
+          transition: "transform 0.9s var(--ease-out-soft), opacity 0.9s var(--ease-out-soft)",
+        }}
+      >
+        <div className="flex items-start justify-between gap-4 border-b border-border pb-5">
+          <div>
+            <p className="text-eyebrow">Financial command view</p>
+            <p className="mt-2 font-display text-xl font-semibold">Business pulse</p>
           </div>
+          <div className="flex items-center gap-2 rounded-full bg-success/10 px-3 py-1.5 text-xs font-semibold text-success">
+            <span className="h-1.5 w-1.5 rounded-full bg-success" /> Books current
+          </div>
+        </div>
 
-          <div className="mt-5 flex h-32 items-end gap-2">
-            {bars.map((h, i) => (
-              <div key={i} className="flex-1">
+        <div className="mt-5 grid grid-cols-2 gap-3">
+          <div className="rounded-2xl bg-secondary p-4">
+            <div className="flex items-center justify-between text-muted-foreground">
+              <span className="text-xs font-medium">Cash position</span>
+              <WalletCards className="h-4 w-4" />
+            </div>
+            <p className="mt-3 font-display text-2xl font-semibold">₹12.8L</p>
+            <p className="mt-1 flex items-center gap-1 text-xs font-semibold text-success">
+              <TrendingUp className="h-3.5 w-3.5" /> Healthy buffer
+            </p>
+          </div>
+          <div className="rounded-2xl bg-navy p-4 text-navy-foreground">
+            <div className="flex items-center justify-between opacity-70">
+              <span className="text-xs font-medium">Receivables</span>
+              <IndianRupee className="h-4 w-4" />
+            </div>
+            <p className="mt-3 font-display text-2xl font-semibold">₹4.2L</p>
+            <p className="mt-1 text-xs opacity-70">3 follow-ups due</p>
+          </div>
+        </div>
+
+        <div className="mt-3 rounded-2xl border border-border p-4 sm:p-5">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs font-medium text-muted-foreground">Revenue trend</p>
+              <p className="mt-1 font-display text-lg font-semibold">Clear upward momentum</p>
+            </div>
+            <div className="flex items-center gap-1 text-xs font-semibold text-success">
+              +18.4% <ArrowUpRight className="h-3.5 w-3.5" />
+            </div>
+          </div>
+          <div className="mt-4 flex h-24 items-end gap-2">
+            {bars.map((height, index) => (
+              <div key={height + index} className="flex h-full flex-1 items-end rounded-t bg-secondary">
                 <div
-                  className="w-full rounded-t-md bg-primary/85"
+                  className="w-full rounded-t bg-primary"
                   style={{
-                    height: `${h * (0.35 + progress * 0.65)}%`,
-                    transition: `height 0.9s var(--ease-out-soft) ${i * 60}ms`,
+                    height: `${height * (0.45 + progress * 0.55)}%`,
+                    transition: `height 0.9s var(--ease-out-soft) ${index * 55}ms`,
                   }}
                 />
               </div>
             ))}
           </div>
+        </div>
 
-          <div className="mt-5 grid grid-cols-3 gap-3 border-t border-border pt-4 text-left">
-            {[
-              ["Books", "Closed"],
-              ["Reports", "Current"],
-              ["Decisions", "Informed"],
-            ].map(([k, v], i) => (
-              <div
-                key={k}
-                style={{
-                  opacity: Math.min(1, Math.max(0, progress * 3 - i * 0.5)),
-                  transition: "opacity 0.6s var(--ease-out-soft)",
-                }}
-              >
-                <div className="text-[0.68rem] uppercase tracking-widest text-muted-foreground">
-                  {k}
-                </div>
-                <div className="text-sm font-semibold text-foreground">{v}</div>
-              </div>
-            ))}
-          </div>
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          {["GST reconciled", "MIS ready", "Payroll closed"].map((item) => (
+            <div key={item} className="flex min-h-14 items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs font-medium">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-success/10 text-success">
+                <Check className="h-3 w-3" />
+              </span>
+              {item}
+            </div>
+          ))}
         </div>
       </div>
     </div>

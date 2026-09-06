@@ -91,7 +91,7 @@ function Home() {
             </h2>
           </Reveal>
 
-          <div className="mt-14 grid gap-10 sm:grid-cols-3">
+          <div className="mt-14 grid gap-4 sm:grid-cols-3">
             {[
               {
                 icon: FileWarning,
@@ -109,12 +109,22 @@ function Home() {
                 line: "Your attention going to follow-ups instead of sales and growth.",
               },
             ].map((item, i) => (
-              <Reveal key={item.title} delay={i * 110}>
-                <item.icon className="h-7 w-7 text-primary" aria-hidden="true" />
-                <h3 className="mt-5 font-display text-xl font-semibold tracking-tight">
+              <Reveal
+                key={item.title}
+                delay={i * 110}
+                className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-7"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-primary">
+                    <item.icon className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <span className="font-display text-3xl font-semibold text-border">0{i + 1}</span>
+                </div>
+                <h3 className="mt-8 font-display text-xl font-semibold tracking-tight">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.line}</p>
+                <div className="mt-7 h-1 w-12 rounded-full bg-primary/70" />
               </Reveal>
             ))}
           </div>
