@@ -163,7 +163,7 @@ function AdminPage() {
         <Tabs defaultValue="overview" className="mt-10">
           <TabsList className="flex-wrap">
             <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="enquiries">Enquiries</TabsTrigger>
+            
             <TabsTrigger value="bookings">Bookings</TabsTrigger>
             <TabsTrigger value="quicktests">Quick Tests</TabsTrigger>
             <TabsTrigger value="reviews">Reviews</TabsTrigger>
@@ -174,7 +174,7 @@ function AdminPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Stat label="Visitors (30d)" value={d.totals.visitors} />
               <Stat label="Page views" value={d.totals.pageViews} />
-              <Stat label="Enquiries" value={d.totals.enquiries} />
+              
               <Stat label="Consultations" value={d.totals.consultations} />
               <Stat label="New visitors" value={d.totals.newVisitors} />
               <Stat label="Returning" value={d.totals.returningVisitors} />
@@ -200,51 +200,6 @@ function AdminPage() {
               <Tally title="Devices" rows={d.devices} />
               <Tally title="Countries" rows={d.countries} />
             </div>
-          </TabsContent>
-
-          <TabsContent value="enquiries" className="mt-8">
-            <ul className="space-y-4">
-              {d.enquiries.length === 0 && (
-                <li className="text-muted-foreground">No enquiries yet.</li>
-              )}
-              {d.enquiries.map((e) => (
-                <li key={e.id} className="rounded-2xl border border-border bg-card p-5">
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <p className="font-medium">
-                        {e.name}
-                        {e.business_name ? ` — ${e.business_name}` : ""}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {e.email}
-                        {e.phone ? ` · ${e.phone}` : ""}
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed">{e.message}</p>
-                    </div>
-                    <Select
-                      value={e.status ?? "new"}
-                      onValueChange={async (status) => {
-                        await setEnquiry({
-                          data: { id: e.id, status: status as (typeof STATUSES)[number] },
-                        });
-                        qc.invalidateQueries({ queryKey: ["admin-overview"] });
-                      }}
-                    >
-                      <SelectTrigger className="w-44">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {STATUSES.map((s) => (
-                          <SelectItem key={s} value={s}>
-                            {s.replace("_", " ")}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </TabsContent>
 
           <TabsContent value="bookings" className="mt-8">
