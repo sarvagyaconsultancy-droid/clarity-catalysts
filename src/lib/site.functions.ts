@@ -158,6 +158,13 @@ export const bookConsultation = createServerFn({ method: "POST" })
       return { ok: false as const, error: "We couldn't confirm that slot. Please try again." };
     }
     await logSubmission("booking", ipHash);
+    const gmail = await import("./gmail.server");
+    const owner = gmail.bookingOwnerEmail(data);
+    const visitor = gmail.bookingVisitorEmail(data);
+    await Promise.all([
+      gmail.sendGmail(gmail.OWNER_EMAIL, owner.subject, owner.body),
+      gmail.sendGmail(data.email, visitor.subject, visitor.body),
+    ]);
     return { ok: true as const };
   });
 
