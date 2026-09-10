@@ -30,7 +30,7 @@ function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Let's talk about your business"
-        lead="Book a free consultation, or send us a note and we'll come back to you."
+        lead="Pick a time that suits you and we'll come prepared. It's free, and there's no obligation."
       />
 
       <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
@@ -40,7 +40,26 @@ function ContactPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <EnquiryForm />
+            <div className="rounded-[1.5rem] border border-border p-6 sm:p-9">
+              <h2 className="font-display text-xl font-semibold tracking-tight">
+                Prefer to reach us directly?
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Email us and we&apos;ll reply personally. Already worked with us? We&apos;d value
+                your feedback.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Button asChild className="rounded-full px-7">
+                  <a href={`mailto:${BRAND.email}`}>Email us</a>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full px-7">
+                  <Link to="/reviews">
+                    <Star className="mr-2 h-4 w-4" aria-hidden="true" />
+                    Share your feedback
+                  </Link>
+                </Button>
+              </div>
+            </div>
 
             <div className="mt-10 space-y-4 text-sm">
               <p className="flex items-center gap-3">
