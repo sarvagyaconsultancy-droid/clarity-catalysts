@@ -78,8 +78,9 @@ function FaqPage() {
               </Link>
             </Button>
             <Button asChild variant="outline" className="rounded-full px-7">
-              <Link to="/contact">Send an enquiry</Link>
+              <Link to="/reviews">Read client feedback</Link>
             </Button>
+
           </div>
         </Reveal>
       </section>

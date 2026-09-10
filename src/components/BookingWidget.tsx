@@ -104,7 +104,7 @@ export function BookingWidget() {
         </div>
       ) : days.length === 0 ? (
         <p className="mt-8 text-sm text-muted-foreground">
-          No slots are open at the moment. Please send an enquiry and we&apos;ll arrange a time.
+          No slots are open at the moment. Please email us and we&apos;ll arrange a time.
         </p>
       ) : (
         <>
