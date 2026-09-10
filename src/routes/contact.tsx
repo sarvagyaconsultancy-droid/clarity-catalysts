@@ -1,22 +1,14 @@
-import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { Instagram, Loader2, Mail, MapPin, CheckCircle2 } from "lucide-react";
-import { toast } from "sonner";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Instagram, Mail, MapPin, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { BookingWidget } from "@/components/BookingWidget";
 import { BRAND } from "@/lib/content";
-import { submitEnquiry } from "@/lib/site.functions";
-import { track } from "@/lib/analytics";
 
-const TITLE = "Contact & Book a Free Consultation | Sarvagya Consultancy";
+const TITLE = "Book a Free Consultation | Sarvagya Consultancy";
 const DESC =
-  "Send an enquiry or book a free consultation with Sarvagya Consultancy, Chennai. We'll understand your business and tell you plainly what should happen next.";
+  "Book a free consultation with Sarvagya Consultancy, Chennai. We'll understand your business and tell you plainly what should happen next.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
