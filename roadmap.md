@@ -12,6 +12,9 @@
 - Search engines blocked from /admin and /auth
 - Homepage visual refinement: richer opening dashboard, stronger problem cards, and Instagram profile preview
 
+## Done (continued)
+- Gmail connected (sarvagyaconsultancy@gmail.com): every consultation booking now emails the details to the owner and a confirmation to the visitor; verified end-to-end with a test booking
+
 ## Open / needs user
-- Email notifications + acknowledgement emails: needs an email domain the owner controls (Set up email domain dialog)
+- Email notifications for enquiry form submissions: can reuse the Gmail connection if wanted
 - Instagram live feed: needs Instagram API access; graceful link-out fallback in place meanwhile
