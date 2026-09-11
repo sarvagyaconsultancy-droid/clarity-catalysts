@@ -38,31 +38,12 @@ function AuthPage() {
     e.preventDefault();
     setBusy(true);
     setError("");
-    setNotice("");
 
-    if (mode === "signup") {
-      const { data, error: err } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo: `${window.location.origin}/auth` },
-      });
-      if (err) {
-        setBusy(false);
-        setError(err.message);
-        return;
-      }
-      if (!data.session) {
-        setBusy(false);
-        setNotice("Account created. Please confirm your email, then sign in.");
-        return;
-      }
-    } else {
-      const { error: err } = await supabase.auth.signInWithPassword({ email, password });
-      if (err) {
-        setBusy(false);
-        setError(err.message);
-        return;
-      }
+    const { error: err } = await supabase.auth.signInWithPassword({ email, password });
+    if (err) {
+      setBusy(false);
+      setError(err.message);
+      return;
     }
 
     try {
