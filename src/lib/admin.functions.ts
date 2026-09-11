@@ -184,10 +184,19 @@ export const getMyAdminStatus = createServerFn({ method: "GET" })
     return { isAdmin: Boolean(data) };
   });
 
-/** One-time bootstrap: the first signed-in user becomes admin when none exists. */
+/**
+ * One-time bootstrap: the first signed-in user becomes admin when none exists.
+ * Locked to the known owner email so no other account can race to claim it.
+ */
+const OWNER_EMAILS = ["sarvagyaconsultancy@gmail.com"];
+
 export const claimFirstAdmin = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
+    const email = (context.claims as { email?: string }).email?.toLowerCase();
+    if (!email || !OWNER_EMAILS.includes(email)) {
+      return { claimed: false as const };
+    }
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { count } = await supabaseAdmin
       .from("user_roles")
