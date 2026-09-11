@@ -21,7 +21,6 @@ import {
   moderateReview,
   saveContentEntry,
   updateConsultationStatus,
-  updateEnquiryStatus,
 } from "@/lib/admin.functions";
 
 const STATUSES = [
@@ -96,7 +95,6 @@ function AdminPage() {
 
   const overviewFn = useServerFn(getAdminOverview);
   const contentFn = useServerFn(getContentEntries);
-  const setEnquiry = useServerFn(updateEnquiryStatus);
   const setConsultation = useServerFn(updateConsultationStatus);
   const setReview = useServerFn(moderateReview);
   const saveContent = useServerFn(saveContentEntry);
