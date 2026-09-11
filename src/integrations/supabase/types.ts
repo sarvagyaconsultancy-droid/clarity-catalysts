@@ -304,7 +304,18 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      availability_block_dates: {
+        Row: {
+          block_date: string | null
+        }
+        Insert: {
+          block_date?: string | null
+        }
+        Update: {
+          block_date?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
