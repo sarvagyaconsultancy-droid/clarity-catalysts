@@ -18,3 +18,12 @@
 ## Open / needs user
 - Email notifications for enquiry form submissions: can reuse the Gmail connection if wanted
 - Instagram live feed: needs Instagram API access; graceful link-out fallback in place meanwhile
+
+## Next improvements
+- Enhance logo clarity across the header, footer, and site icon while preserving the supplied mark
+- Add Google Calendar and Google Meet to consultation bookings
+- Add a separate finance tools section with GST, break-even, working-capital, receivables, and bookkeeping-readiness tools
+- Add clearly identified illustrative case studies without presenting invented examples as real client results
+- Animate the homepage financial dashboard on scroll
+- Add a visual process diagram for moving from messy records to clear monthly reporting
+- Give each service category a distinctive visual symbol and supporting illustration
