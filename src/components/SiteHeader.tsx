@@ -41,18 +41,24 @@ export function SiteHeader() {
         scrolled ? "border-b border-border bg-background/85 backdrop-blur-xl" : "bg-transparent",
       )}
     >
-      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-6 px-5 py-3 sm:px-8">
-        <Link to="/" className="flex items-center gap-3" aria-label="Sarvagya Consultancy home">
-          <img
-            src={logo.url}
-            alt="Sarvagya Consultancy logo"
-            width={44}
-            height={44}
-            className="h-11 w-11 rounded-lg object-cover"
-          />
-          <span className="hidden text-sm font-semibold leading-tight tracking-tight sm:block">
-            Sarvagya
-            <span className="block text-[0.68rem] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 py-3 sm:px-8">
+        <Link
+          to="/"
+          className="group flex shrink-0 items-center gap-3.5"
+          aria-label="Sarvagya Consultancy home"
+        >
+          <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-border bg-card p-1 shadow-soft transition-transform duration-200 group-hover:-translate-y-0.5">
+            <img
+              src={logo.url}
+              alt="Sarvagya Consultancy logo"
+              width={56}
+              height={56}
+              className="h-full w-full object-contain"
+            />
+          </span>
+          <span className="hidden leading-none sm:block">
+            <span className="block text-lg font-bold uppercase text-foreground">Sarvagya</span>
+            <span className="mt-1 block text-[0.62rem] font-semibold uppercase tracking-[0.25em] text-primary">
               Consultancy
             </span>
           </span>
@@ -95,7 +101,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="fixed inset-x-0 top-[4.5rem] z-50 h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-border bg-background px-5 pb-10 pt-4 xl:hidden">
+        <div className="fixed inset-x-0 top-20 z-50 h-[calc(100dvh-5rem)] overflow-y-auto border-t border-border bg-background px-5 pb-10 pt-4 xl:hidden">
           <nav className="flex flex-col" aria-label="Mobile">
             {NAV.map((item) => (
               <Link

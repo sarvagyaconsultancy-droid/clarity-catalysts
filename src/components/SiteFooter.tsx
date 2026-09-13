@@ -8,16 +8,25 @@ export function SiteFooter() {
     <footer className="surface-navy mt-24">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-3">
-            <img
-              src={logo.url}
-              alt="Sarvagya Consultancy logo"
-              width={48}
-              height={48}
-              loading="lazy"
-              className="h-12 w-12 rounded-lg object-cover"
-            />
-            <span className="font-display text-lg font-semibold">Sarvagya Consultancy</span>
+          <div className="flex items-center gap-5">
+            <span className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-card p-1.5 shadow-lift">
+              <img
+                src={logo.url}
+                alt="Sarvagya Consultancy logo"
+                width={80}
+                height={80}
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
+            </span>
+            <span className="leading-none">
+              <span className="block text-2xl font-bold uppercase">Sarvagya</span>
+              <span className="mt-2 flex items-center gap-2 text-[0.68rem] font-medium uppercase tracking-[0.3em] text-steel">
+                <span className="h-px w-5 bg-navy-foreground/25" aria-hidden="true" />
+                Consultancy
+                <span className="h-px w-5 bg-navy-foreground/25" aria-hidden="true" />
+              </span>
+            </span>
           </div>
           <p className="mt-5 max-w-sm text-sm leading-relaxed opacity-80">
             Finance, accounting and business advisory for growing Indian businesses. Based in{" "}
