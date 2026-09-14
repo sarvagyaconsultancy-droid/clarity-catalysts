@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FinancialHealthCheckRouteImport } from './routes/financial-health-check'
@@ -21,6 +22,7 @@ import { Route as QuickTestRouteImport } from './routes/quick-test'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WhySarvagyaRouteImport } from './routes/why-sarvagya'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +43,11 @@ const AdminRoute = AdminRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesRoute = CaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -83,6 +90,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WhySarvagyaRoute = WhySarvagyaRouteImport.update({
   id: '/why-sarvagya',
   path: '/why-sarvagya',
@@ -94,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
@@ -102,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/tools': typeof ToolsRoute
   '/why-sarvagya': typeof WhySarvagyaRoute
 }
 export interface FileRoutesByTo {
@@ -109,6 +123,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
@@ -117,6 +132,7 @@ export interface FileRoutesByTo {
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/tools': typeof ToolsRoute
   '/why-sarvagya': typeof WhySarvagyaRoute
 }
 export interface FileRoutesById {
@@ -125,6 +141,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/financial-health-check': typeof FinancialHealthCheckRoute
@@ -133,6 +150,7 @@ export interface FileRoutesById {
   '/reviews': typeof ReviewsRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/tools': typeof ToolsRoute
   '/why-sarvagya': typeof WhySarvagyaRoute
 }
 export interface FileRouteTypes {
@@ -142,6 +160,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/auth'
+    | '/case-studies'
     | '/contact'
     | '/faq'
     | '/financial-health-check'
@@ -150,6 +169,7 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/services'
     | '/terms'
+    | '/tools'
     | '/why-sarvagya'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -157,6 +177,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/auth'
+    | '/case-studies'
     | '/contact'
     | '/faq'
     | '/financial-health-check'
@@ -165,6 +186,7 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/services'
     | '/terms'
+    | '/tools'
     | '/why-sarvagya'
   id:
     | '__root__'
@@ -172,6 +194,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/auth'
+    | '/case-studies'
     | '/contact'
     | '/faq'
     | '/financial-health-check'
@@ -180,6 +203,7 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/services'
     | '/terms'
+    | '/tools'
     | '/why-sarvagya'
   fileRoutesById: FileRoutesById
 }
@@ -188,6 +212,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
+  CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   FinancialHealthCheckRoute: typeof FinancialHealthCheckRoute
@@ -196,6 +221,7 @@ export interface RootRouteChildren {
   ReviewsRoute: typeof ReviewsRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
+  ToolsRoute: typeof ToolsRoute
   WhySarvagyaRoute: typeof WhySarvagyaRoute
 }
 
@@ -227,6 +253,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
+      preLoaderRoute: typeof CaseStudiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -285,6 +318,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/why-sarvagya': {
       id: '/why-sarvagya'
       path: '/why-sarvagya'
@@ -300,6 +340,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
+  CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   FinancialHealthCheckRoute: FinancialHealthCheckRoute,
@@ -308,6 +349,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReviewsRoute: ReviewsRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
+  ToolsRoute: ToolsRoute,
   WhySarvagyaRoute: WhySarvagyaRoute,
 }
 export const routeTree = rootRouteImport
