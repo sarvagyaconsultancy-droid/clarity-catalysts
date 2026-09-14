@@ -108,9 +108,11 @@ export type Database = {
         Row: {
           admin_notes: string | null
           business_name: string | null
+          calendar_event_id: string | null
           created_at: string
           email: string
           id: string
+          meet_link: string | null
           name: string
           phone: string | null
           requirement: string | null
@@ -122,9 +124,11 @@ export type Database = {
         Insert: {
           admin_notes?: string | null
           business_name?: string | null
+          calendar_event_id?: string | null
           created_at?: string
           email: string
           id?: string
+          meet_link?: string | null
           name: string
           phone?: string | null
           requirement?: string | null
@@ -136,9 +140,11 @@ export type Database = {
         Update: {
           admin_notes?: string | null
           business_name?: string | null
+          calendar_event_id?: string | null
           created_at?: string
           email?: string
           id?: string
+          meet_link?: string | null
           name?: string
           phone?: string | null
           requirement?: string | null
