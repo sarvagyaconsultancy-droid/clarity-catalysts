@@ -35,6 +35,7 @@ export function BookingWidget() {
   const [time, setTime] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
+  const [meetLink, setMeetLink] = useState<string | null>(null);
 
   const days = data?.days ?? [];
   const activeDay = days.find((d) => d.date === date) ?? days[0];
@@ -61,6 +62,7 @@ export function BookingWidget() {
         },
       });
       if (res.ok) {
+        setMeetLink(res.meetLink);
         setDone(true);
         track("consultation_booked");
       } else {
@@ -81,10 +83,11 @@ export function BookingWidget() {
           Your consultation request is in
         </h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-          We&apos;ve recorded your preferred slot
+          {meetLink ? "Your consultation is confirmed for" : "We've recorded your preferred slot"}
           {activeDay && time ? ` — ${formatDate(activeDay.date)} at ${formatTime(time)}` : ""}. We
-          will confirm it with you directly before the call.
+          {meetLink ? " sent a calendar invitation and confirmation email." : " will confirm it with you directly before the call."}
         </p>
+        {meetLink ? <Button asChild className="mt-6 rounded-full"><a href={meetLink} target="_blank" rel="noopener noreferrer">Open Google Meet</a></Button> : null}
       </div>
     );
   }

@@ -141,15 +141,19 @@ export const bookConsultation = createServerFn({ method: "POST" })
       return { ok: false as const, error: "Too many requests. Please try again later." };
     }
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin.from("consultations").insert({
-      name: data.name,
-      business_name: data.businessName || null,
-      email: data.email,
-      phone: data.phone || null,
-      slot_date: data.slotDate,
-      slot_time: data.slotTime,
-      requirement: data.requirement || null,
-    });
+    const { data: consultation, error } = await supabaseAdmin
+      .from("consultations")
+      .insert({
+        name: data.name,
+        business_name: data.businessName || null,
+        email: data.email,
+        phone: data.phone || null,
+        slot_date: data.slotDate,
+        slot_time: data.slotTime,
+        requirement: data.requirement || null,
+      })
+      .select("id")
+      .single();
     if (error) {
       if (error.code === "23505") {
         return { ok: false as const, error: "That slot was just taken. Please pick another." };
@@ -158,14 +162,26 @@ export const bookConsultation = createServerFn({ method: "POST" })
       return { ok: false as const, error: "We couldn't confirm that slot. Please try again." };
     }
     await logSubmission("booking", ipHash);
+    const calendar = await import("./calendar.server");
+    const calendarEvent = await calendar.createConsultationEvent(data);
+    if (calendarEvent && consultation) {
+      const { error: calendarSaveError } = await supabaseAdmin
+        .from("consultations")
+        .update({
+          calendar_event_id: calendarEvent.eventId,
+          meet_link: calendarEvent.meetLink,
+        })
+        .eq("id", consultation.id);
+      if (calendarSaveError) console.error("calendar details save failed", calendarSaveError.message);
+    }
     const gmail = await import("./gmail.server");
-    const owner = gmail.bookingOwnerEmail(data);
-    const visitor = gmail.bookingVisitorEmail(data);
+    const owner = gmail.bookingOwnerEmail(data, calendarEvent?.meetLink ?? null);
+    const visitor = gmail.bookingVisitorEmail(data, calendarEvent?.meetLink ?? null);
     await Promise.all([
       gmail.sendGmail(gmail.OWNER_EMAIL, owner.subject, owner.body),
       gmail.sendGmail(data.email, visitor.subject, visitor.body),
     ]);
-    return { ok: true as const };
+    return { ok: true as const, meetLink: calendarEvent?.meetLink ?? null };
   });
 
 export const submitReview = createServerFn({ method: "POST" })

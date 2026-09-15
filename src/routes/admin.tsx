@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
+import { Video } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -220,6 +221,11 @@ function AdminPage() {
                       {c.requirement && (
                         <p className="mt-3 text-sm leading-relaxed">{c.requirement}</p>
                       )}
+                      {c.meet_link ? (
+                        <a href={c.meet_link} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary">
+                          <Video className="h-4 w-4" aria-hidden="true" /> Open Google Meet
+                        </a>
+                      ) : null}
                     </div>
                     <Select
                       value={c.status ?? "new"}

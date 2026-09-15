@@ -44,6 +44,8 @@ export function SiteFooter() {
               { to: "/why-sarvagya", label: "Why Sarvagya" },
               { to: "/financial-health-check", label: "Financial Health Check" },
               { to: "/quick-test", label: "Quick Test for Your Business" },
+              { to: "/tools", label: "Finance Tools" },
+              { to: "/case-studies", label: "Illustrative Case Studies" },
               { to: "/reviews", label: "Reviews" },
               { to: "/faq", label: "FAQ" },
               { to: "/contact", label: "Contact" },
