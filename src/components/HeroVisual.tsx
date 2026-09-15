@@ -60,7 +60,14 @@ export function HeroVisual() {
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-3">
-          <div className="rounded-2xl bg-secondary p-4">
+          <div
+            className="rounded-2xl bg-secondary p-4"
+            style={{
+              transform: `translateY(${(1 - progress) * 14}px)`,
+              opacity: 0.55 + progress * 0.45,
+              transition: "transform 0.8s var(--ease-out-soft), opacity 0.8s var(--ease-out-soft)",
+            }}
+          >
             <div className="flex items-center justify-between text-muted-foreground">
               <span className="text-xs font-medium">Cash position</span>
               <WalletCards className="h-4 w-4" />
@@ -70,7 +77,14 @@ export function HeroVisual() {
               <TrendingUp className="h-3.5 w-3.5" /> Healthy buffer
             </p>
           </div>
-          <div className="rounded-2xl bg-navy p-4 text-navy-foreground">
+          <div
+            className="rounded-2xl bg-navy p-4 text-navy-foreground"
+            style={{
+              transform: `translateY(${(1 - progress) * 20}px)`,
+              opacity: 0.5 + progress * 0.5,
+              transition: "transform 0.9s var(--ease-out-soft) 100ms, opacity 0.9s var(--ease-out-soft) 100ms",
+            }}
+          >
             <div className="flex items-center justify-between opacity-70">
               <span className="text-xs font-medium">Receivables</span>
               <IndianRupee className="h-4 w-4" />
@@ -106,8 +120,16 @@ export function HeroVisual() {
         </div>
 
         <div className="mt-3 grid grid-cols-3 gap-2">
-          {["GST reconciled", "MIS ready", "Payroll closed"].map((item) => (
-            <div key={item} className="flex min-h-14 items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs font-medium">
+          {["GST reconciled", "MIS ready", "Payroll closed"].map((item, index) => (
+            <div
+              key={item}
+              className="flex min-h-14 items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs font-medium"
+              style={{
+                opacity: Math.max(0, Math.min(1, progress * 2.4 - index * 0.18)),
+                transform: `translateY(${Math.max(0, (1 - progress) * 8)}px)`,
+                transition: `opacity 0.6s var(--ease-out-soft) ${index * 100}ms, transform 0.6s var(--ease-out-soft) ${index * 100}ms`,
+              }}
+            >
               <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-success/10 text-success">
                 <Check className="h-3 w-3" />
               </span>

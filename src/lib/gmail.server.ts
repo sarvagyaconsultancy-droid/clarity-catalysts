@@ -71,7 +71,7 @@ export function bookingOwnerEmail(data: {
   slotDate: string;
   slotTime: string;
   requirement: string;
-}) {
+}, meetLink: string | null = null) {
   return {
     subject: `New consultation request — ${data.name}`,
     body: [
@@ -82,10 +82,13 @@ export function bookingOwnerEmail(data: {
       `Email: ${data.email}`,
       data.phone ? `Phone: ${data.phone}` : null,
       `Preferred slot: ${formatSlot(data.slotDate, data.slotTime)}`,
+      meetLink ? `Google Meet: ${meetLink}` : null,
       "",
       data.requirement ? `What they'd like to discuss:\n${data.requirement}` : null,
       "",
-      "Please confirm the slot with them directly before the call.",
+      meetLink
+        ? "The calendar invitation has been sent to the visitor."
+        : "Please confirm the slot with them directly before the call.",
     ]
       .filter((l) => l !== null)
       .join("\n"),
@@ -96,7 +99,7 @@ export function bookingVisitorEmail(data: {
   name: string;
   slotDate: string;
   slotTime: string;
-}) {
+}, meetLink: string | null = null) {
   return {
     subject: "Your consultation request — Sarvagya Consultancy",
     body: [
@@ -105,14 +108,17 @@ export function bookingVisitorEmail(data: {
       "Thank you for booking a free consultation with Sarvagya Consultancy.",
       "",
       `Your preferred slot: ${formatSlot(data.slotDate, data.slotTime)}`,
+      meetLink ? `Join on Google Meet: ${meetLink}` : null,
       "",
-      "We have received your request and will confirm the time with you shortly before the call.",
+      meetLink
+        ? "Your calendar invitation has been sent. We look forward to speaking with you."
+        : "We have received your request and will confirm the time with you shortly before the call.",
       "",
       "If you need to change anything, just reply to this email.",
       "",
       "Warm regards,",
       "Sarvagya Consultancy",
       "Virtual. Reliable. Growth Focused.",
-    ].join("\n"),
+    ].filter((line) => line !== null).join("\n"),
   };
 }

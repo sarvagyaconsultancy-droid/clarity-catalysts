@@ -12,6 +12,7 @@ const NAV = [
   { to: "/about", label: "About" },
   { to: "/why-sarvagya", label: "Why Sarvagya" },
   { to: "/financial-health-check", label: "Financial Health Check" },
+  { to: "/tools", label: "Finance Tools" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
 ] as const;

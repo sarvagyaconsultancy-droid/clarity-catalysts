@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
+import { ProcessDiagram } from "@/components/ProcessDiagram";
 
 const TITLE = "Why Sarvagya — Corporate expertise, practical business thinking";
 const DESC =
@@ -98,6 +99,8 @@ function WhyPage() {
             </Reveal>
           ))}
         </div>
+
+        <ProcessDiagram />
 
         <Reveal className="mt-20 rounded-2xl border border-border bg-secondary/50 p-8">
           <h2 className="font-display text-xl font-semibold tracking-tight">
