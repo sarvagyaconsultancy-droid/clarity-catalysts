@@ -62,7 +62,7 @@ export function BookingWidget() {
         },
       });
       if (res.ok) {
-        setMeetLink(res.meetLink);
+        setMeetLink(res.meetLink ?? null);
         setDone(true);
         track("consultation_booked");
       } else {
