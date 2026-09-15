@@ -1,5 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeIndianRupee,
+  BookOpenCheck,
+  ChartNoAxesCombined,
+  Handshake,
+  Landmark,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -15,6 +22,14 @@ import { track } from "@/lib/analytics";
 const TITLE = "Services — Accounting, GST, Virtual CFO | Sarvagya Consultancy";
 const DESC =
   "Bookkeeping, accounting, payroll, MIS, GST notices and order replies, virtual CFO, cash-flow management, debtors recovery and fund raising for growing businesses.";
+
+const CATEGORY_ICONS = {
+  "accounting-bookkeeping": BookOpenCheck,
+  "tax-gst": BadgeIndianRupee,
+  "financial-management": ChartNoAxesCombined,
+  "business-resolution": Handshake,
+  "business-growth": Landmark,
+} as const;
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -57,10 +72,18 @@ function ServicesPage() {
       </PageHero>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        {SERVICE_CATEGORIES.map((cat) => (
+        {SERVICE_CATEGORIES.map((cat, categoryIndex) => {
+          const CategoryIcon = CATEGORY_ICONS[cat.slug as keyof typeof CATEGORY_ICONS];
+          return (
           <section key={cat.slug} id={cat.slug} className="scroll-mt-28 border-b border-border py-16 lg:py-24">
             <Reveal className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
               <div className="lg:sticky lg:top-28 lg:self-start">
+                <div className="mb-6 flex items-center gap-4">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-accent text-primary">
+                    <CategoryIcon className="h-7 w-7" aria-hidden="true" />
+                  </span>
+                  <span className="text-xs font-semibold text-muted-foreground">0{categoryIndex + 1}</span>
+                </div>
                 <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                   {cat.title}
                 </h2>
@@ -103,7 +126,8 @@ function ServicesPage() {
               </Accordion>
             </Reveal>
           </section>
-        ))}
+          );
+        })}
       </div>
 
       <section className="mx-auto max-w-7xl px-5 py-20 text-center sm:px-8">
